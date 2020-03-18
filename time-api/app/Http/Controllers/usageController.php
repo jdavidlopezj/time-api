@@ -110,4 +110,29 @@ class usageController extends Controller
         $application->save();
         return $application;
     }
+//// panel y esas cosas
+public function getUsagesPanel()
+{
+    $response = array('code' => 400, 'error_msg' => []);
+   // $user = User::find(1);
+    //$usages = $user->userUsages->paginate(5)->onEachSide(2);
+    $usages = usage::where('user_id', '1')->paginate(5)->onEachSide(2);
+
+    if (isset($usages)) {
+        $response = array('code' => 200, 'usages' => $usages);
+    } else {
+        array_push($response['error_msg'], 'no usages found');
+    }
+    return view('csv', ['response' => $response]);
+}
+
+
+
+
+
+
+
+
+
+
 }
