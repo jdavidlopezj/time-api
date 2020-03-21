@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class usageController extends Controller
 {
-    public function algo($id)
-    {
-        $user = User::find($id);
 
-        return $user->userAlgo;
-    }
     public function csvDataSave(Request $request)
     {
         $response = array('code' => 400, 'error_msg' => []);
@@ -215,8 +210,7 @@ class usageController extends Controller
     public function totalUseAplication($id)
     {
         $response = array('code' => 400, 'error_msg' => []);
-        //  $user = User::find(Auth::user()->id); 
-        $user = User::find(1);
+         $user = User::find(Auth::user()->id); 
         $application = application::find($id);
         if (isset($user) && isset($application)) {
             $totalUse = DB::table('app_usage')->select(
@@ -242,7 +236,6 @@ class usageController extends Controller
         } else {
             array_push($response['error_msg'], 'no data found');
         }
-        // return response($response, $response['code']);
         return view('detail', ['response' => $response]);
 
     }
