@@ -19,6 +19,7 @@ Route::post('/user/password/reset', 'UserController@sendMail');
 Route::post('save/data','usageController@csvDataSave');
 Route::get('usages/{id}','usageController@getUsages');
 Route::get('totallocation/{id}','usageController@totalUseLocation');
+
 ///////
 
 //////aplications
@@ -34,5 +35,6 @@ Route::delete('restrictions/delete/{id}','restrictionController@deleteRestrictio
 ///////
 
 
+Route::get('app/detail/{id}','usageController@totalUseAplication');
 
 

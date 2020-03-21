@@ -3,13 +3,32 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class user extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
 {
+    use Notifiable;
     protected $table = 'users';
     
- 
+   /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     public  function userUsages()
     {
         return $this->hasMany("App\usage", "user_id");
@@ -19,4 +38,6 @@ class user extends Model
     {
         return $this->hasMany('App\restriction', "user_id");
     }
+
+  
 }

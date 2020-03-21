@@ -10,4 +10,15 @@ class application extends Model
     protected $fillable = ['name','image'];
     
  
+    public  function applicationUsages()
+    {
+        return $this->hasMany("App\usage", "application_id");
+    }
+
+    public  function applicationRestriction()
+    {
+        return $this->hasMany("App\restriction", "user_id");
+
+    }
+
 }

@@ -18,5 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/csv', 'usageController@getUsagesPanel');
+Route::get('/csv', 'usageController@csvDataSavePanel')->middleware('auth');
+Route::post('/csv', 'usageController@csvDataSavePanel')->middleware('auth');
+
+Route::get('/restrictions', 'restrictionController@createRestictionPanel')->middleware('auth');
+Route::post('/restrictions', 'restrictionController@restrictionPanel')->middleware('auth');
+
+Route::get('app/detail/{id}','usageController@totalUseAplication');
 
